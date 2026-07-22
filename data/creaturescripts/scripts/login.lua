@@ -39,5 +39,6 @@ function onLogin(player)
 	player:registerEvent("HunterElectionModal")
 	player:registerEvent("AuctionBoardModal")
 	player:registerEvent("BountyDeath")
+	player:registerEvent("AccompanyModal")
 	return true
 end

@@ -12,4 +12,5 @@
 	<event type="modalwindow" name="AuctionBoardModal" script="nen/auction_board_modal.lua" />
 	<event type="death" name="BountyDeath" script="nen/bounty_death.lua" />
 	<event type="death" name="TrickTowerBossDeath" script="nen/trick_tower_boss.lua" />
+	<event type="modalwindow" name="AccompanyModal" script="nen/accompany_modal.lua" />
 </creaturescripts>

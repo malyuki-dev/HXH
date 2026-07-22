@@ -192,4 +192,7 @@
 	
 	<!-- Trick Tower Instanced Dungeon -->
 	<action itemid="1945" script="nen/trick_tower_lever.lua" />
+	
+	<!-- Greed Island Cards -->
+	<action itemid="2018" script="nen/card_accompany.lua" />
 </actions>
