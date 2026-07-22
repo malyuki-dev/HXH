@@ -62,3 +62,33 @@ void TerritoryManager::processYields() {
         }
     }
 }
+
+void TerritoryManager::updateCaptureProgress(uint32_t territoryId, Player* invader) {
+    auto it = nodes.find(territoryId);
+    if (it != nodes.end()) {
+        TerritoryNode& node = it->second;
+        Guild* guild = invader->getGuild();
+        if (!guild) return;
+        
+        uint32_t guildId = guild->getId();
+        if (node.ownerGuildId == guildId) return; // Already owns it
+        
+        // Nen Lock mechanics
+        if (invader->hasCondition(CONDITION_AURA_REN) || invader->hasCondition(CONDITION_AURA_EN) || invader->hasCondition(CONDITION_AURA_GYO)) {
+            if (node.capturingGuildId != guildId) {
+                node.capturingGuildId = guildId;
+                node.influencePoints = 0.0f;
+            }
+            
+            // Progress proportional to player's level / 100
+            node.influencePoints += (invader->getLevel() * 0.01f);
+            
+            if (node.influencePoints >= 100.0f) {
+                setOwner(territoryId, guildId);
+                node.influencePoints = 0.0f;
+                node.capturingGuildId = 0;
+                std::cout << ">> Territory " << node.name << " captured by guild ID " << guildId << std::endl;
+            }
+        }
+    }
+}

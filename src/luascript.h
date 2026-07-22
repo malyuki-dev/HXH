@@ -661,6 +661,7 @@ private:
 	static int luaPlayerGetSkillPercent(lua_State* L);
 	static int luaPlayerGetSkillTries(lua_State* L);
 	static int luaPlayerCraftItem(lua_State* L);
+	static int luaPlayerHasLicense(lua_State* L);
 	static int luaPlayerAddSkillTries(lua_State* L);
 	static int luaPlayerRemoveSkillTries(lua_State* L);
 	static int luaPlayerGetSpecialSkill(lua_State* L);

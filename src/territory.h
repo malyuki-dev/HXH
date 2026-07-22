@@ -10,7 +10,8 @@ struct TerritoryNode {
     std::string name;
     uint32_t ownerGuildId;
     uint32_t yieldGold;
-    // other stats
+    float influencePoints = 0.0f; // Acumulado por ocupacao (Nen Lock)
+    uint32_t capturingGuildId = 0;
 };
 
 class TerritoryManager {
@@ -24,6 +25,7 @@ public:
     void setOwner(uint32_t territoryId, uint32_t guildId);
     uint32_t getOwner(uint32_t territoryId) const;
     void processYields();
+    void updateCaptureProgress(uint32_t territoryId, class Player* invader);
     void startLoop();
 
 private:

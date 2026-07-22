@@ -19,6 +19,7 @@
 #include "iologindata.h"
 #include "snapshot_buffer.h"
 #include "crafting.h"
+#include "exam_manager.h"
 #include "iomapserialize.h"
 #include "iomarket.h"
 #include "luavariant.h"
@@ -2769,6 +2770,7 @@ void LuaScriptInterface::registerFunctions()
 	registerMethod(L, "Player", "getSkillPercent", LuaScriptInterface::luaPlayerGetSkillPercent);
 	registerMethod(L, "Player", "getSkillTries", LuaScriptInterface::luaPlayerGetSkillTries);
 	registerMethod(L, "Player", "craftItem", LuaScriptInterface::luaPlayerCraftItem);
+	registerMethod(L, "Player", "hasLicense", LuaScriptInterface::luaPlayerHasLicense);
 	registerMethod(L, "Player", "addSkillTries", LuaScriptInterface::luaPlayerAddSkillTries);
 	registerMethod(L, "Player", "removeSkillTries", LuaScriptInterface::luaPlayerRemoveSkillTries);
 	registerMethod(L, "Player", "getSpecialSkill", LuaScriptInterface::luaPlayerGetSpecialSkill);
@@ -9539,6 +9541,19 @@ int LuaScriptInterface::luaPlayerCraftItem(lua_State* L)
 	if (player) {
 		uint32_t blueprintId = tfs::lua::getNumber<uint32_t>(L, 2);
 		tfs::lua::pushBoolean(L, BlueprintRegistry::getInstance().craftItem(player, blueprintId));
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+int LuaScriptInterface::luaPlayerHasLicense(lua_State* L)
+{
+	// player:hasLicense(licenseName)
+	Player* player = tfs::lua::getUserdata<Player>(L, 1);
+	if (player) {
+		std::string licenseName = tfs::lua::getString(L, 2);
+		tfs::lua::pushBoolean(L, ExamManager::getInstance().hasLicense(player, licenseName));
 	} else {
 		lua_pushnil(L);
 	}

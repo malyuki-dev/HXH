@@ -2092,6 +2092,19 @@ void Player::death(Creature* lastHitCreature)
 {
 	loginPosition = town->templePosition;
 
+	// Bounty System: Transfer reward to killer
+	if (lastHitCreature && lastHitCreature->getPlayer()) {
+		Player* killer = lastHitCreature->getPlayer();
+		if (killer != this) {
+			uint64_t reward = this->getBountyValue() + (this->getLevel() * 100);
+			killer->addBounty(reward);
+			this->resetBounty();
+			
+			// If it's a huge bounty, maybe notify? (simplified for now)
+			std::cout << ">> " << killer->getName() << " collected a bounty of " << reward << " from " << this->getName() << "!" << std::endl;
+		}
+	}
+
 	if (skillLoss) {
 		uint8_t unfairFightReduction = 100;
 		bool lastHitPlayer = Player::lastHitIsPlayer(lastHitCreature);

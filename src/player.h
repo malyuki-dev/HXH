@@ -528,6 +528,11 @@ public:
 	int64_t getSkullTicks() const { return skullTicks; }
 	void setSkullTicks(int64_t ticks) { skullTicks = ticks; }
 
+	// Bounty System
+	uint64_t getBountyValue() const { return bountyValue; }
+	void addBounty(uint64_t amount) { bountyValue += amount; }
+	void resetBounty() { bountyValue = 0; }
+
 	bool hasAttacked(const Player* attacked) const;
 	void addAttacked(const Player* attacked);
 	void removeAttacked(const Player* attacked);
@@ -1255,6 +1260,7 @@ private:
 	uint64_t bankBalance = 0;
 	int64_t lastFailedFollow = 0;
 	int64_t skullTicks = 0;
+	uint64_t bountyValue = 0;
 	int64_t lastWalkthroughAttempt = 0;
 	int64_t lastToggleMount = 0;
 	int64_t lastPing;
