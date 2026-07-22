@@ -6,6 +6,8 @@
 #include "otserv.h"
 
 #include "actions.h"
+#include "auctionmanager.h"
+#include "blueprintmanager.h"
 #include "configmanager.h"
 #include "databasemanager.h"
 #include "databasetasks.h"
@@ -170,6 +172,8 @@ void mainLoader(ServiceManager* services)
 		return;
 	}
 
+	BlueprintManager::getInstance().loadFromXml("data/XML/blueprints.xml");
+
 	std::cout << ">> Loading monsters" << std::endl;
 	if (!g_monsters.loadFromXml()) {
 		startupErrorMessage("Unable to load monsters!");
@@ -281,6 +285,7 @@ void startServer()
 	g_scheduler.start();
 
 	LagCompensation::getInstance().startLoop();
+	AuctionManager::getInstance().startLoop();
 
 	g_dispatcher.addTask([services = &serviceManager]() { mainLoader(services); });
 

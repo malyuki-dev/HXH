@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprints>
+    <blueprint id="1" name="Wooden Sword" resultItemId="2391" resultCount="1">
+        <requirement itemId="5901" count="2" /> <!-- Wood -->
+    </blueprint>
+    <blueprint id="2" name="Iron Shield" resultItemId="2514" resultCount="1">
+        <requirement itemId="5880" count="3" /> <!-- Iron Ore -->
+    </blueprint>
+</blueprints>

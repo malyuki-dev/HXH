@@ -1,9 +1,11 @@
 set(tfs_SRC
 	${CMAKE_CURRENT_LIST_DIR}/otpch.cpp
 	${CMAKE_CURRENT_LIST_DIR}/actions.cpp
+	${CMAKE_CURRENT_LIST_DIR}/auctionmanager.cpp
 	${CMAKE_CURRENT_LIST_DIR}/ban.cpp
 	${CMAKE_CURRENT_LIST_DIR}/base64.cpp
 	${CMAKE_CURRENT_LIST_DIR}/baseevents.cpp
+	${CMAKE_CURRENT_LIST_DIR}/blueprintmanager.cpp
 	${CMAKE_CURRENT_LIST_DIR}/bed.cpp
 	${CMAKE_CURRENT_LIST_DIR}/chat.cpp
 	${CMAKE_CURRENT_LIST_DIR}/combat.cpp
@@ -81,9 +83,11 @@ set(tfs_SRC
 set(tfs_HDR
 	${CMAKE_CURRENT_LIST_DIR}/otpch.h
 	${CMAKE_CURRENT_LIST_DIR}/actions.h
+	${CMAKE_CURRENT_LIST_DIR}/auctionmanager.h
 	${CMAKE_CURRENT_LIST_DIR}/ban.h
 	${CMAKE_CURRENT_LIST_DIR}/base64.h
 	${CMAKE_CURRENT_LIST_DIR}/baseevents.h
+	${CMAKE_CURRENT_LIST_DIR}/blueprintmanager.h
 	${CMAKE_CURRENT_LIST_DIR}/bed.h
 	${CMAKE_CURRENT_LIST_DIR}/chat.h
 	${CMAKE_CURRENT_LIST_DIR}/combat.h

@@ -410,3 +410,21 @@ CREATE TRIGGER `oncreate_guilds` AFTER INSERT ON `guilds`
 END
 //
 DELIMITER ;
+
+CREATE TABLE `auctions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `player_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `item_count` int(11) NOT NULL,
+  `item_attributes` blob NOT NULL,
+  `start_price` bigint(20) NOT NULL,
+  `buyout_price` bigint(20) NOT NULL,
+  `current_bid` bigint(20) NOT NULL DEFAULT '0',
+  `top_bidder` int(11) DEFAULT NULL,
+  `end_time` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `player_id` (`player_id`),
+  KEY `top_bidder` (`top_bidder`),
+  CONSTRAINT `auctions_ibfk_1` FOREIGN KEY (`player_id`) REFERENCES `players` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `auctions_ibfk_2` FOREIGN KEY (`top_bidder`) REFERENCES `players` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
