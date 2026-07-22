@@ -51,4 +51,7 @@
 	<!-- Economy & Blacklist -->
 	<talkaction words="!sellitem" separator=" " script="sell_item.lua" />
 	<talkaction words="!bounty" separator=" " script="set_bounty.lua" />
+	
+	<!-- Nen Vows -->
+	<talkaction words="!vow" separator=" " script="nen_vow.lua" />
 </talkactions>
