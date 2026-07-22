@@ -703,4 +703,22 @@ enum DamageAnalyzerImpactType
 	RECEIVED = 2
 };
 
+enum AuraState_t : uint8_t {
+	AURA_NONE = 0,
+	AURA_REN = 1 << 0,
+	AURA_GYO = 1 << 1,
+	AURA_ZETSU = 1 << 2,
+	AURA_IN = 1 << 3
+};
+
+enum NenCategory_t : int8_t {
+    NEN_CATEGORY_NONE = -1,
+    NEN_CATEGORY_REFORCO = 0,
+    NEN_CATEGORY_TRANSFORMACAO = 1,
+    NEN_CATEGORY_EMISSAO = 2,
+    NEN_CATEGORY_MANIPULACAO = 3,
+    NEN_CATEGORY_MATERIALIZACAO = 4,
+    NEN_CATEGORY_ESPECIALIZACAO = 5
+};
+
 #endif // FS_ENUMS_H

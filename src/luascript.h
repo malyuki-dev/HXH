@@ -806,6 +806,13 @@ private:
 	static int luaPlayerSendResourceBalance(lua_State* L);
 	static int luaPlayerSendEnterMarket(lua_State* L);
 
+	static int luaPlayerGetNenCategory(lua_State* L);
+	static int luaPlayerSetNenCategory(lua_State* L);
+	static int luaPlayerGenerateNenAffinity(lua_State* L);
+	static int luaPlayerSetAura(lua_State* L);
+	static int luaPlayerClearAura(lua_State* L);
+	static int luaPlayerHasAura(lua_State* L);
+
 	// Monster
 	static int luaMonsterCreate(lua_State* L);
 

@@ -644,7 +644,24 @@ void Combat::addDistanceEffect(Creature* caster, const Position& fromPos, const 
 	}
 
 	if (effect != CONST_ANI_NONE) {
-		g_game.addDistanceEffect(fromPos, toPos, effect);
+		if (caster && caster->getPlayer() && caster->getPlayer()->hasAura(AURA_IN)) {
+			SpectatorVec spectators, toPosSpectators;
+			g_game.map.getSpectators(spectators, fromPos, true, true);
+			g_game.map.getSpectators(toPosSpectators, toPos, true, true);
+			spectators.addSpectators(toPosSpectators);
+
+			SpectatorVec filtered;
+			for (Creature* spectator : spectators) {
+				if (Player* spectatorPlayer = spectator->getPlayer()) {
+					if (spectatorPlayer->hasAura(AURA_GYO) || spectatorPlayer == caster) {
+						filtered.emplace_back(spectator);
+					}
+				}
+			}
+			g_game.addDistanceEffect(filtered, fromPos, toPos, effect);
+		} else {
+			g_game.addDistanceEffect(fromPos, toPos, effect);
+		}
 	}
 }
 
@@ -797,6 +814,25 @@ void Combat::doTargetCombat(Creature* caster, Creature* target, CombatDamage& da
 		if (tile->hasFlag(TILESTATE_NEN_HEAVY)) {
 			damage.primary.value /= 2;
 			damage.secondary.value /= 2;
+		}
+	}
+
+	if (casterPlayer && damage.primary.type != COMBAT_HEALING && damage.primary.type != COMBAT_MANADRAIN) {
+		int8_t cat = casterPlayer->getNenCategory();
+		if (cat != NEN_CATEGORY_NONE) {
+			float multiplier = 1.0f;
+			if (cat == NEN_CATEGORY_REFORCO && damage.primary.type == COMBAT_PHYSICALDAMAGE) {
+				multiplier = 1.2f;
+			} else if (cat == NEN_CATEGORY_EMISSAO && damage.primary.type == COMBAT_ENERGYDAMAGE) {
+				multiplier = 1.2f;
+			} else if (cat == NEN_CATEGORY_TRANSFORMACAO && damage.primary.type == COMBAT_FIREDAMAGE) {
+				multiplier = 1.2f;
+			}
+			if (casterPlayer->hasAura(AURA_REN)) {
+				multiplier += 0.5f; // Ren boost
+			}
+			damage.primary.value = static_cast<int32_t>(damage.primary.value * multiplier);
+			damage.secondary.value = static_cast<int32_t>(damage.secondary.value * multiplier);
 		}
 	}
 

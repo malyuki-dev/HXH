@@ -95,6 +95,7 @@ public:
 	~Player();
 
 	using Creature::onWalk;
+	void onThink(uint32_t interval) override;
 
 	// non-copyable
 	Player(const Player&) = delete;
@@ -127,6 +128,15 @@ public:
 	bool hasMount(const Mount* mount) const;
 	bool hasMounts() const;
 	void dismount();
+
+	// Nen System
+	void setAura(uint8_t aura);
+	void clearAura(uint8_t aura);
+	bool hasAura(uint8_t aura) const;
+	void processAuraTick();
+	int8_t getNenCategory() const { return nenCategory; }
+	void setNenCategory(int8_t cat) { nenCategory = cat; }
+	void generateNenAffinity();
 
 	void sendFYIBox(const std::string& message)
 	{
@@ -1371,6 +1381,9 @@ private:
 	uint32_t getConditionSuppressions() const override { return conditionSuppressions; }
 	uint16_t getLookCorpse() const override;
 	void getPathSearchParams(const Creature* creature, FindPathParams& fpp) const override;
+
+	uint8_t auraState = 0;
+	int8_t nenCategory = -1;
 
 	friend class Game;
 	friend class Npc;

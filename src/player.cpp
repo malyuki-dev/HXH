@@ -4750,3 +4750,42 @@ void Player::updateRegeneration()
 		condition->setParam(CONDITION_PARAM_MANATICKS, vocation->getManaGainTicks() * 1000);
 	}
 }
+void Player::setAura(uint8_t aura) {
+	auraState |= aura;
+}
+
+void Player::clearAura(uint8_t aura) {
+	auraState &= ~aura;
+}
+
+bool Player::hasAura(uint8_t aura) const {
+	return (auraState & aura) != 0;
+}
+
+void Player::processAuraTick() {
+	if (hasAura(AURA_REN) || hasAura(AURA_GYO) || hasAura(AURA_IN)) {
+		if (mana >= 5) {
+			changeMana(-5);
+		} else {
+			clearAura(AURA_REN | AURA_GYO | AURA_IN);
+			setAura(AURA_ZETSU);
+			sendTextMessage(MESSAGE_EVENT_ADVANCE, "Voce esta exausto e entrou em estado de Zetsu.");
+		}
+	}
+}
+
+void Player::generateNenAffinity() {
+	if (nenCategory != NEN_CATEGORY_NONE) {
+		return;
+	}
+	uint64_t SERVER_SALT = 0xbf58476d1ce4e5b9;
+	uint64_t seed = (uint64_t)getGUID() ^ SERVER_SALT;
+	seed = (seed ^ (seed >> 30)) * 0xbf58476d1ce4e5b9;
+	nenCategory = seed % 6;
+	sendTextMessage(MESSAGE_EVENT_ADVANCE, "Sua afinidade de Nen foi despertada.");
+}
+
+void Player::onThink(uint32_t interval) {
+	Creature::onThink(interval);
+	processAuraTick();
+}

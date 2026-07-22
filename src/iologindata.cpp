@@ -168,6 +168,7 @@ bool IOLoginData::loadPlayer(Player* player, DBResult_ptr result)
 
 	player->setSex(static_cast<PlayerSex_t>(result->getNumber<uint16_t>("sex")));
 	player->level = std::max<uint32_t>(1, result->getNumber<uint32_t>("level"));
+	player->setNenCategory(result->getNumber<int8_t>("nen_category"));
 
 	uint64_t experience = result->getNumber<uint64_t>("experience");
 
@@ -648,6 +649,7 @@ bool IOLoginData::savePlayer(Player* player)
 	query << "`level` = " << player->level << ',';
 	query << "`group_id` = " << player->group->id << ',';
 	query << "`vocation` = " << player->getVocationId() << ',';
+	query << "`nen_category` = " << static_cast<int>(player->nenCategory) << ',';
 	query << "`health` = " << player->health << ',';
 	query << "`healthmax` = " << player->healthMax << ',';
 	query << "`experience` = " << player->experience << ',';

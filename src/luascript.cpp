@@ -2916,6 +2916,13 @@ void LuaScriptInterface::registerFunctions()
 
 	registerMethod(L, "Player", "sendEnterMarket", LuaScriptInterface::luaPlayerSendEnterMarket);
 
+	registerMethod(L, "Player", "getNenCategory", LuaScriptInterface::luaPlayerGetNenCategory);
+	registerMethod(L, "Player", "setNenCategory", LuaScriptInterface::luaPlayerSetNenCategory);
+	registerMethod(L, "Player", "generateNenAffinity", LuaScriptInterface::luaPlayerGenerateNenAffinity);
+	registerMethod(L, "Player", "setAura", LuaScriptInterface::luaPlayerSetAura);
+	registerMethod(L, "Player", "clearAura", LuaScriptInterface::luaPlayerClearAura);
+	registerMethod(L, "Player", "hasAura", LuaScriptInterface::luaPlayerHasAura);
+
 	// Monster
 	registerClass(L, "Monster", "Creature", LuaScriptInterface::luaMonsterCreate);
 	registerMetaMethod(L, "Monster", "__eq", LuaScriptInterface::luaUserdataCompare);
@@ -18909,4 +18916,67 @@ void LuaEnvironment::executeTimerEvent(uint32_t eventIndex)
 	for (auto parameter : timerEventDesc.parameters) {
 		luaL_unref(L, LUA_REGISTRYINDEX, parameter);
 	}
+}
+int LuaScriptInterface::luaPlayerGetNenCategory(lua_State* L) {
+	Player* player = getUserdata<Player>(L, 1);
+	if (player) {
+		lua_pushinteger(L, player->getNenCategory());
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+int LuaScriptInterface::luaPlayerSetNenCategory(lua_State* L) {
+	Player* player = getUserdata<Player>(L, 1);
+	if (player) {
+		player->setNenCategory(getNumber<int8_t>(L, 2));
+		pushBoolean(L, true);
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+int LuaScriptInterface::luaPlayerGenerateNenAffinity(lua_State* L) {
+	Player* player = getUserdata<Player>(L, 1);
+	if (player) {
+		player->generateNenAffinity();
+		pushBoolean(L, true);
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+int LuaScriptInterface::luaPlayerSetAura(lua_State* L) {
+	Player* player = getUserdata<Player>(L, 1);
+	if (player) {
+		player->setAura(getNumber<uint8_t>(L, 2));
+		pushBoolean(L, true);
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+int LuaScriptInterface::luaPlayerClearAura(lua_State* L) {
+	Player* player = getUserdata<Player>(L, 1);
+	if (player) {
+		player->clearAura(getNumber<uint8_t>(L, 2));
+		pushBoolean(L, true);
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+int LuaScriptInterface::luaPlayerHasAura(lua_State* L) {
+	Player* player = getUserdata<Player>(L, 1);
+	if (player) {
+		pushBoolean(L, player->hasAura(getNumber<uint8_t>(L, 2)));
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
 }
