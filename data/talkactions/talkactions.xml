@@ -115,4 +115,7 @@
 	<!-- Greed Island Binder -->
 	<talkaction words="!book" separator=" " script="nen/greed_island_binder.lua" />
 	<talkaction words="!gaincard" separator=" " script="nen/greed_island_binder.lua" />
+	
+	<!-- Greed Island Spell Cards -->
+	<talkaction words="!spellcard" separator=" " script="nen/spell_cards.lua" />
 </talkactions>
