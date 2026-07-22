@@ -86,4 +86,7 @@
 	
 	<!-- Godspeed (Kanmuru) -->
 	<talkaction words="!godspeed" separator=" " script="nen/godspeed.lua" />
+	
+	<!-- Bungee Gum (Hisoka) -->
+	<talkaction words="!bungeegum" separator=" " script="nen/bungee_gum.lua" />
 </talkactions>
