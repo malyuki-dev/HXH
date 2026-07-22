@@ -185,6 +185,26 @@ set(tfs_HDR
 
 set(tfs_MAIN ${CMAKE_CURRENT_LIST_DIR}/main.cpp PARENT_SCOPE)
 
+add_executable(tfs ${server_src})
+
+# AddressSanitizer (ASAN) and UB Sanitizer for Debug builds
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    target_compile_options(tfs PRIVATE -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer)
+    target_link_options(tfs PRIVATE -fsanitize=address -fsanitize=undefined)
+endif()
+
+target_link_libraries(tfs PRIVATE
+	Boost::iostreams
+	Boost::system
+	Boost::locale
+	fmt::fmt
+	OpenSSL::Crypto
+	pugixml::pugixml
+	ZLIB::ZLIB
+	${CMAKE_THREAD_LIBS_INIT}
+	${LUA_LIBRARIES}
+	${MYSQL_CLIENT_LIBS}
+	)
 add_library(tfslib ${tfs_SRC})
 target_link_libraries(tfslib PRIVATE
 	Boost::iostreams
