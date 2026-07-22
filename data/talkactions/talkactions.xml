@@ -138,4 +138,8 @@
 	<!-- Hisoka's Bungee Gum -->
 	<talkaction words="!bungeegum" separator=" " script="nen/bungee_gum.lua" />
 	<talkaction words="!bungeepull" separator=" " script="nen/bungee_pull.lua" />
+	
+	<!-- Chrollo's Bandit's Secret -->
+	<talkaction words="!steal" separator=" " script="nen/bandits_secret.lua" />
+	<talkaction words="!stolen" separator=" " script="nen/stolen_ability.lua" />
 </talkactions>
