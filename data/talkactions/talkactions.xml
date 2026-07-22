@@ -70,4 +70,7 @@
 	
 	<!-- Chimera Ants -->
 	<talkaction words="!devour" separator=" " script="chimera_devour.lua" />
+	
+	<!-- Nen Overload -->
+	<talkaction words="!emperortime" separator=" " script="nen/emperor_time.lua" />
 </talkactions>
