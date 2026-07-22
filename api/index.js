@@ -99,6 +99,23 @@ app.get('/api/stats', (req, res) => {
     });
 });
 
+app.get('/api/rankings', (req, res) => {
+    // Busca os jogadores na tabela `players` do motor C++
+    db.all(`SELECT name, level, vocation FROM players ORDER BY level DESC LIMIT 10`, [], (err, rows) => {
+        if (err) {
+            // Se a tabela ainda não existir (TFS não deu o primeiro boot), retorna mock
+            return res.json([
+                { name: "Ging Freecss", level: 150, vocation: 6 },
+                { name: "Isaac Netero", level: 145, vocation: 1 },
+                { name: "Chrollo Lucilfer", level: 130, vocation: 5 },
+                { name: "Hisoka Morow", level: 125, vocation: 2 },
+                { name: "Illumi Zoldyck", level: 120, vocation: 4 }
+            ]);
+        }
+        res.json(rows);
+    });
+});
+
 app.listen(PORT, () => {
     console.log(`🚀 Aldebaran API Server running on http://localhost:${PORT}`);
 });

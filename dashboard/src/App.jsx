@@ -13,6 +13,8 @@ function App() {
   const [success, setSuccess] = useState('');
   const [user, setUser] = useState(null);
   const [stats, setStats] = useState(null);
+  const [rankings, setRankings] = useState([]);
+  const [showRankings, setShowRankings] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -20,6 +22,7 @@ function App() {
       fetchProfile(token);
     }
     fetchStats();
+    fetchRankings();
   }, []);
 
   const fetchProfile = async (token) => {
@@ -44,6 +47,18 @@ function App() {
       if (res.ok) {
         const data = await res.json();
         setStats(data);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const fetchRankings = async () => {
+    try {
+      const res = await fetch(`${API_URL}/rankings`);
+      if (res.ok) {
+        const data = await res.json();
+        setRankings(data);
       }
     } catch (err) {
       console.error(err);
@@ -120,10 +135,57 @@ function App() {
             </div>
           </div>
 
-          <button className="btn-primary" onClick={logout} style={{ marginTop: '30px' }}>
+          <button className="btn-primary" onClick={() => setShowRankings(true)} style={{ marginTop: '20px', background: 'var(--secondary)' }}>
+            Ver Global Rankings
+          </button>
+
+          <button className="btn-primary" onClick={logout} style={{ marginTop: '10px', background: '#e53935' }}>
             Sair
           </button>
         </div>
+      </div>
+    );
+  }
+
+  if (showRankings) {
+    return (
+      <div className="dashboard-container" style={{ maxWidth: '600px' }}>
+        <div className="logo-section">
+          <h1>Global Rankings</h1>
+          <p>Top 10 Hunters do Servidor</p>
+        </div>
+        
+        <div style={{ background: 'rgba(0,0,0,0.3)', borderRadius: '12px', padding: '15px', marginTop: '20px' }}>
+          <table style={{ width: '100%', textAlign: 'left', borderCollapse: 'collapse' }}>
+            <thead>
+              <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+                <th style={{ padding: '10px' }}>Rank</th>
+                <th style={{ padding: '10px' }}>Nome</th>
+                <th style={{ padding: '10px' }}>Vocation</th>
+                <th style={{ padding: '10px' }}>Level</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rankings.map((r, idx) => (
+                <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                  <td style={{ padding: '10px', color: idx < 3 ? '#fbbf24' : '#fff' }}>#{idx + 1}</td>
+                  <td style={{ padding: '10px', fontWeight: 'bold' }}>{r.name}</td>
+                  <td style={{ padding: '10px', color: '#9ca3af' }}>Nen {r.vocation}</td>
+                  <td style={{ padding: '10px', color: '#3b82f6', fontWeight: 'bold' }}>{r.level}</td>
+                </tr>
+              ))}
+              {rankings.length === 0 && (
+                <tr>
+                  <td colSpan="4" style={{ padding: '20px', textAlign: 'center' }}>Nenhum dado encontrado.</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+
+        <button className="btn-primary" onClick={() => setShowRankings(false)} style={{ marginTop: '30px' }}>
+          Voltar
+        </button>
       </div>
     );
   }
@@ -194,6 +256,12 @@ function App() {
         ) : (
           <p>Já possui acesso? <span onClick={() => { setIsLogin(true); setError(''); setSuccess(''); }}>Faça Login</span></p>
         )}
+      </div>
+
+      <div style={{ textAlign: 'center', marginTop: '20px' }}>
+        <button onClick={() => setShowRankings(true)} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,0.2)', color: '#fff', padding: '10px 20px', borderRadius: '8px', cursor: 'pointer', transition: 'all 0.2s' }} onMouseOver={e => e.target.style.background='rgba(255,255,255,0.1)'} onMouseOut={e => e.target.style.background='transparent'}>
+          🏆 Ver Rankings Globais
+        </button>
       </div>
     </div>
   )
