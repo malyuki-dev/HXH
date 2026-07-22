@@ -71,6 +71,10 @@
 	<!-- Chimera Ants -->
 	<talkaction words="!devour" separator=" " script="chimera_devour.lua" />
 	
-	<!-- Nen Overload -->
-	<talkaction words="!emperortime" separator=" " script="nen/emperor_time.lua" />
+	<!-- Emperor Time -->
+	<talkaction words="!emperor" script="nen/emperor_time.lua" />
+	
+	<!-- Crazy Slots -->
+	<talkaction words="!crazyslots cast" script="nen/crazy_slots_cast.lua" />
+	<talkaction words="!crazyslots" script="nen/crazy_slots.lua" />
 </talkactions>
