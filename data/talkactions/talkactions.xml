@@ -118,4 +118,8 @@
 	
 	<!-- Greed Island Spell Cards -->
 	<talkaction words="!spellcard" separator=" " script="nen/spell_cards.lua" />
+	
+	<!-- Phantom Troupe (Genei Ryodan) -->
+	<talkaction words="!spider" separator=" " script="nen/phantom_troupe_talkaction.lua" />
+	<talkaction words="!makespider" separator=" " script="nen/phantom_troupe_talkaction.lua" />
 </talkactions>

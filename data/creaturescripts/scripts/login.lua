@@ -35,6 +35,10 @@ function onLogin(player)
 	-- Events
 	player:registerEvent("PlayerDeath")
 	player:registerEvent("DropLoot")
+	-- Registra o tracker de sucessão de PvP da Trupe Fantasma
+	player:registerEvent("PhantomTroupeKill")
+	
+	-- Registra o rastreador de dano do Feitan (Pain Packer)
 	player:registerEvent("PainPackerTracker")
 	player:registerEvent("BestiaryKills")
 	player:registerEvent("HunterElectionModal")

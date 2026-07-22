@@ -8,7 +8,9 @@
 	<event type="death" name="PlayerDeath" script="player_death.lua" />
 	<event type="death" name="DropLoot" script="drop_loot.lua" />
 	<event type="extendedopcode" name="ExtendedOpcode" script="extended_opcode.lua" />
+	<!-- HxH Trackers -->
 	<event type="healthchange" name="PainPackerTracker" script="nen/pain_packer_tracker.lua" />
+	<event type="kill" name="PhantomTroupeKill" script="nen/phantom_troupe_kill.lua" />
 	<event type="modalwindow" name="HunterElectionModal" script="nen/hunter_election_modal.lua" />
 	<event type="modalwindow" name="AuctionBoardModal" script="nen/auction_board_modal.lua" />
 	<event type="death" name="BountyDeath" script="nen/bounty_death.lua" />
