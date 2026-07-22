@@ -111,4 +111,8 @@
 	
 	<!-- En (Nen Radar) -->
 	<talkaction words="!en" separator=" " script="nen/en_radar.lua" />
+	
+	<!-- Greed Island Binder -->
+	<talkaction words="!book" separator=" " script="nen/greed_island_binder.lua" />
+	<talkaction words="!gaincard" separator=" " script="nen/greed_island_binder.lua" />
 </talkactions>
