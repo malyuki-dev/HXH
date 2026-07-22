@@ -80,4 +80,7 @@
 	
 	<!-- Skill Hunter (Bandit's Secret) -->
 	<talkaction words="!skillhunter" separator=" " script="nen/skill_hunter.lua" />
+	
+	<!-- Chain Jail (Kurapika's Vow) -->
+	<talkaction words="!chainjail" separator=" " script="nen/chain_jail.lua" />
 </talkactions>
