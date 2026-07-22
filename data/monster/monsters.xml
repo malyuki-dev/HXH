@@ -1165,4 +1165,6 @@
 	<monster name="Zugurosh" file="monsters/zugurosh.xml" />
 	<monster name="Zulazza The Corruptor" file="monsters/zulazza_the_corruptor.xml" />
 	<monster name="Zushuka" file="monsters/zushuka.xml" />
+	<!-- Beasts (Custom) -->
+	<monster name="Giant Forest Boar" file="beasts/giant_boar.xml" />
 </monsters>

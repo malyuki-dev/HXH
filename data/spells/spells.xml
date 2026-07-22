@@ -1,3 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- See data/scripts/spells and data/scripts/runes -->
-<spells />
+<spells>
+	<instant group="attack" spellid="101" name="Jajanken" words="jajanken" level="10" mana="50" prem="0" cooldown="2000" groupcooldown="2000" needlearn="0" script="nen/jajanken.lua">
+		<vocation name="Warrior" />
+	</instant>
+	<instant group="attack" spellid="102" name="Bungee Gum" words="bungee gum" level="15" mana="40" prem="0" cooldown="3000" groupcooldown="2000" needlearn="0" script="nen/bungee_gum.lua">
+		<vocation name="Mage" />
+	</instant>
+	<instant group="support" spellid="103" name="Emperor Time" words="emperor time" level="20" mana="100" prem="0" cooldown="40000" groupcooldown="2000" needlearn="0" script="nen/emperor_time.lua">
+		<vocation name="Paladin" />
+	</instant>
+</spells>

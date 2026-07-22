@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster name="Giant Forest Boar" nameDescription="a giant forest boar" race="blood" experience="150" speed="220" manacost="0">
+	<health now="300" max="300" />
+	<look type="62" corpse="5985" />
+	<targetchange interval="4000" chance="10" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="1" />
+		<flag convinceable="0" />
+		<flag pushable="1" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="1" />
+		<flag runonhealth="30" />
+	</flags>
+	<attacks>
+		<attack name="melee" interval="2000" min="0" max="-60" />
+		<attack name="physical" interval="3000" chance="15" range="1" min="-20" max="-80">
+			<attribute key="areaEffect" value="stun" />
+		</attack>
+	</attacks>
+	<defenses armor="15" defense="15" />
+	<voices interval="5000" chance="10">
+		<voice sentence="GRRUNT!" />
+		<voice sentence="Oink!" />
+	</voices>
+	<loot>
+		<item id="2148" countmax="35" chance="100000" /> <!-- Gold coins -->
+		<item id="2666" chance="30000" /> <!-- Meat -->
+		<item id="11211" chance="5000" /> <!-- Boar Tusk -->
+	</loot>
+</monster>
