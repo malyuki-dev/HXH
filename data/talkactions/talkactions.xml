@@ -96,4 +96,7 @@
 	<!-- Hunter Exam & License -->
 	<talkaction words="!takeexam" separator=" " script="nen/hunter_license.lua" />
 	<talkaction words="!license" separator=" " script="nen/hunter_license.lua" />
+	
+	<!-- Nen Strike (O(1) Damage Demo) -->
+	<talkaction words="!nenstrike" separator=" " script="nen/nen_strike.lua" />
 </talkactions>
