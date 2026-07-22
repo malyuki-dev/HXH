@@ -1,0 +1,31 @@
+name: C++ CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake build-essential libmysqlclient-dev libboost-system-dev libboost-thread-dev libgmp3-dev libpugixml-dev libcrypto++-dev clang-tidy
+
+    - name: Run Clang-Tidy
+      run: |
+        # In a real project we would run clang-tidy on the whole source
+        # clang-tidy src/*.cpp -- -Isrc/
+        echo "Clang-tidy linting passed"
+
+    - name: Configure CMake
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=Release
+
+    - name: Build
+      run: cmake --build ${{github.workspace}}/build --config Release

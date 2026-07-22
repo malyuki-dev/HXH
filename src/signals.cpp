@@ -45,9 +45,8 @@ namespace {
 void sigusr1Handler()
 {
 	// Dispatcher thread
-	std::cout << "SIGUSR1 received, saving the game state..." << std::endl;
-	g_globalEvents->save();
-	g_game.saveGameState();
+	std::cout << "SIGUSR1 received, performing Hot-Reload..." << std::endl;
+	sighupHandler();
 }
 
 void sighupHandler()
