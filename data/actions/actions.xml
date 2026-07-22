@@ -199,6 +199,12 @@
 	<!-- Hunter License -->
 	<action itemid="2026" script="nen/hunter_license.lua" />
 	
+	<!-- Magnetic Force (Accompany) -->
+	<action actionid="5000" script="nen/magnetic_force.lua" />
+	
+	<!-- Water Divination (Nen Awakening) -->
+	<action actionid="5010" script="nen/water_divination.lua" />
+	
 	<!-- Zoldyck Testing Gates -->
 	<action actionid="5001" script="zoldyck_gates.lua" />
 	<action actionid="5002" script="zoldyck_gates.lua" />
