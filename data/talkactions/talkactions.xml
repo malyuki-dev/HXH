@@ -125,4 +125,7 @@
 	
 	<!-- Black Whale Ship -->
 	<talkaction words="!buyticket" separator=" " script="nen/buy_ticket.lua" />
+	
+	<!-- Kakin Succession War (Nen Beasts) -->
+	<talkaction words="!nenbeast" separator=" " script="nen/nen_beast.lua" />
 </talkactions>
