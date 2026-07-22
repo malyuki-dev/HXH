@@ -54,4 +54,7 @@
 	
 	<!-- Nen Vows -->
 	<talkaction words="!vow" separator=" " script="nen_vow.lua" />
+	
+	<!-- Heavens Arena -->
+	<talkaction words="!arena" separator=" " script="arena_join.lua" />
 </talkactions>

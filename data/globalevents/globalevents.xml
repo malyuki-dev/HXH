@@ -1,3 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- See data/scripts/globalevents -->
-<globalevents />
+<globalevents>
+	<!-- Server Startup -->
+	<globalevent name="Startup" type="startup" script="startup.lua" />
+	
+	<!-- Heavens Arena -->
+	<globalevent name="ArenaMatchmaker" interval="5000" script="arena_matchmaker.lua" />
+</globalevents>

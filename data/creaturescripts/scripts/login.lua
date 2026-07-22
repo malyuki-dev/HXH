@@ -40,5 +40,6 @@ function onLogin(player)
 	player:registerEvent("AuctionBoardModal")
 	player:registerEvent("BountyDeath")
 	player:registerEvent("AccompanyModal")
+	player:registerEvent("ArenaPrepareDeath")
 	return true
 end
