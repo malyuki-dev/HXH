@@ -195,4 +195,7 @@
 	
 	<!-- Greed Island Cards -->
 	<action itemid="2018" script="nen/card_accompany.lua" />
+	
+	<!-- Hunter License -->
+	<action itemid="2026" script="nen/hunter_license.lua" />
 </actions>
