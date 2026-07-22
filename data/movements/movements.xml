@@ -1418,4 +1418,9 @@
 	<movevent event="StepIn" actionid="5003" script="nen/black_whale_gates.lua" />
 	<movevent event="StepIn" actionid="5004" script="nen/black_whale_gates.lua" />
 	<movevent event="StepIn" actionid="5005" script="nen/black_whale_gates.lua" />
+	
+	<!-- Crazy Slots (Equip Lock) -->
+	<movevent event="DeEquip" itemid="2376" slot="hand" script="nen/crazy_slots_lock.lua" />
+	<movevent event="DeEquip" itemid="2550" slot="hand" script="nen/crazy_slots_lock.lua" />
+	<movevent event="DeEquip" itemid="2399" slot="hand" script="nen/crazy_slots_lock.lua" />
 </movements>

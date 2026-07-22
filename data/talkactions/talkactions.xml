@@ -131,4 +131,7 @@
 	
 	<!-- Kurapika's Emperor Time -->
 	<talkaction words="!emperortime" separator=" " script="nen/emperor_time.lua" />
+	
+	<!-- Kite's Crazy Slots -->
+	<talkaction words="!crazyslots" separator=" " script="nen/crazy_slots.lua" />
 </talkactions>
