@@ -77,4 +77,7 @@
 	<!-- Crazy Slots -->
 	<talkaction words="!crazyslots cast" script="nen/crazy_slots_cast.lua" />
 	<talkaction words="!crazyslots" script="nen/crazy_slots.lua" />
+	
+	<!-- Skill Hunter (Bandit's Secret) -->
+	<talkaction words="!skillhunter" separator=" " script="nen/skill_hunter.lua" />
 </talkactions>
