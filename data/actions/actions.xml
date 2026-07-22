@@ -189,4 +189,7 @@
 	
 	<!-- Bounty Board -->
 	<action itemid="2017" script="nen/bounty_board.lua" />
+	
+	<!-- Trick Tower Instanced Dungeon -->
+	<action itemid="1945" script="nen/trick_tower_lever.lua" />
 </actions>
