@@ -5,8 +5,9 @@
 
 #include "tasks.h"
 
-#include "enums.h"
 #include "game.h"
+#include "metrics.h"
+#include "tools.h"
 
 extern Game g_game;
 
@@ -30,6 +31,7 @@ void Dispatcher::threadMain()
 		tmpTaskList.swap(taskList);
 		taskLockUnique.unlock();
 
+		auto startTime = OTSYS_TIME();
 		for (Task* task : tmpTaskList) {
 			if (!task->hasExpired()) {
 				++dispatcherCycle;
@@ -38,6 +40,8 @@ void Dispatcher::threadMain()
 			}
 			delete task;
 		}
+		auto endTime = OTSYS_TIME();
+		Metrics::getInstance().recordTick(endTime - startTime);
 		tmpTaskList.clear();
 	}
 }

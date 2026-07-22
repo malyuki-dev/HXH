@@ -1278,6 +1278,12 @@ private:
 	uint32_t magLevel = 0;
 	uint32_t actionTaskEvent = 0;
 	uint32_t walkTaskEvent = 0;
+
+	// Time-Shift Validation
+	int64_t lastMovePacketTime = 0;
+	uint32_t movePacketCount = 0;
+
+	Mount* currentMount = nullptr;
 	uint32_t classicAttackEvent = 0;
 	uint32_t MessageBufferTicks = 0;
 	uint32_t accountNumber = 0;

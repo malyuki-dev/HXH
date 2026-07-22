@@ -2,6 +2,7 @@
 // Use of this source code is governed by the GPL-2.0 License that can be found in the LICENSE file.
 
 #include "otpch.h"
+#include "spatialhash.h"
 
 #include "tile.h"
 
@@ -1128,6 +1129,7 @@ bool Tile::hasCreature(Creature* creature) const
 void Tile::removeCreature(Creature* creature)
 {
 	g_game.map.getQTNode(tilePos.x, tilePos.y)->removeCreature(creature);
+	SpatialHash::getInstance().remove(creature);
 	removeThing(creature, 0);
 }
 
@@ -1411,6 +1413,7 @@ void Tile::internalAddThing(uint32_t, Thing* thing)
 
 		CreatureVector* creatures = makeCreatures();
 		creatures->insert(creatures->begin(), creature);
+		SpatialHash::getInstance().insert(creature);
 	} else {
 		Item* item = thing->getItem();
 		if (!item) {

@@ -5,12 +5,14 @@
 
 #include "otserv.h"
 
+#include "actions.h"
 #include "configmanager.h"
 #include "databasemanager.h"
 #include "databasetasks.h"
 #include "game.h"
 #include "http/http.h"
 #include "iomarket.h"
+#include "lagcompensation.h"
 #include "monsters.h"
 #include "outfit.h"
 #include "protocolstatus.h"
@@ -277,6 +279,8 @@ void startServer()
 
 	g_dispatcher.start();
 	g_scheduler.start();
+
+	LagCompensation::getInstance().startLoop();
 
 	g_dispatcher.addTask([services = &serviceManager]() { mainLoader(services); });
 

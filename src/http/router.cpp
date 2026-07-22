@@ -3,6 +3,7 @@
 #include "cacheinfo.h"
 #include "error.h"
 #include "login.h"
+#include "../metrics.h"
 
 #include <boost/json/monotonic_resource.hpp>
 #include <boost/json/parse.hpp>
@@ -34,6 +35,16 @@ thread_local json::monotonic_resource mr;
 beast::http::message_generator tfs::http::handle_request(const beast::http::request<beast::http::string_body>& req,
                                                          std::string_view ip)
 {
+	if (req.method() == beast::http::verb::get && req.target() == "/metrics") {
+		beast::http::response<beast::http::string_body> res{beast::http::status::ok, req.version()};
+		res.set(beast::http::field::server, "TFS");
+		res.set(beast::http::field::content_type, "text/plain");
+		res.keep_alive(req.keep_alive());
+		res.body() = Metrics::getInstance().getPrometheusMetrics();
+		res.prepare_payload();
+		return res;
+	}
+
 	auto&& [status, responseBody] = [&req, ip]() {
 		boost::system::error_code ec;
 		auto requestBody = json::parse(req.body(), ec, &mr);
