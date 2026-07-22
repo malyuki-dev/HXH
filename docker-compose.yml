@@ -1,0 +1,82 @@
+version: '3.8'
+
+services:
+  # MySQL Database
+  db:
+    image: mysql:8.0
+    container_name: aldebaran_db
+    environment:
+      MYSQL_ROOT_PASSWORD: aldebaran_root_secret
+      MYSQL_DATABASE: aldebaran
+      MYSQL_USER: aldebaran
+      MYSQL_PASSWORD: aldebaran_secret
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - aldebaran_net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 5
+
+  # Aldebaran Game Server (C++)
+  game-server:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: aldebaran_engine
+    environment:
+      - DB_HOST=db
+      - DB_USER=aldebaran
+      - DB_PASS=aldebaran_secret
+      - DB_NAME=aldebaran
+    ports:
+      - "7171:7171"
+      - "7172:7172"
+      - "8080:8080" # Prometheus metrics
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - aldebaran_net
+    volumes:
+      - ./data:/usr/src/app/data
+      - ./config.lua:/usr/src/app/config.lua
+
+  # Node.js API
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: aldebaran_api
+    environment:
+      - PORT=3001
+      - DB_HOST=db # Preparado caso mudemos do SQLite pro MySQL
+    ports:
+      - "3001:3001"
+    networks:
+      - aldebaran_net
+    volumes:
+      - ./api/database.sqlite:/usr/src/app/database.sqlite
+
+  # React Dashboard (Vite preview mode)
+  dashboard:
+    build:
+      context: ./dashboard
+      dockerfile: Dockerfile
+    container_name: aldebaran_dashboard
+    ports:
+      - "4173:4173" # Vite preview default port
+    networks:
+      - aldebaran_net
+    depends_on:
+      - api
+
+networks:
+  aldebaran_net:
+    driver: bridge
+
+volumes:
+  db_data:
