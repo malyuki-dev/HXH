@@ -198,4 +198,13 @@
 	
 	<!-- Hunter License -->
 	<action itemid="2026" script="nen/hunter_license.lua" />
+	
+	<!-- Zoldyck Testing Gates -->
+	<action actionid="5001" script="zoldyck_gates.lua" />
+	<action actionid="5002" script="zoldyck_gates.lua" />
+	<action actionid="5003" script="zoldyck_gates.lua" />
+	<action actionid="5004" script="zoldyck_gates.lua" />
+	<action actionid="5005" script="zoldyck_gates.lua" />
+	<action actionid="5006" script="zoldyck_gates.lua" />
+	<action actionid="5007" script="zoldyck_gates.lua" />
 </actions>
