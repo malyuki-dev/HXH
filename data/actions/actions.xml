@@ -177,4 +177,7 @@
 	<action fromid="18488" toid="18492" script="others/skill_trainer.lua" />
 	<action itemid="20252" script="others/bed_modification_kits.lua" />
 	<action fromid="22845" toid="22846" script="others/teleport.lua" />
+	
+	<!-- Nen Divination -->
+	<action itemid="2013" script="nen/water_divination.lua" />
 </actions>
