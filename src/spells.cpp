@@ -6,6 +6,8 @@
 #include "spells.h"
 
 #include "combat.h"
+#include "iologindata.h"
+#include "telemetry.h"
 #include "configmanager.h"
 #include "events.h"
 #include "game.h"
@@ -733,6 +735,7 @@ bool Spell::playerRuneSpellCheck(Player* player, const Position& toPos)
 
 void Spell::postCastSpell(Player* player, bool finishedCast /*= true*/, bool payCost /*= true*/) const
 {
+	TelemetryServer::incrementSkillUsage();
 	if (finishedCast) {
 		if (!player->hasFlag(PlayerFlag_HasNoExhaustion)) {
 			if (cooldown > 0) {

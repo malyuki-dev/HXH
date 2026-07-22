@@ -22,6 +22,7 @@
 #include "items.h"
 #include "monster.h"
 #include "movement.h"
+#include "telemetry.h"
 #include "npc.h"
 #include "outfit.h"
 #include "party.h"
@@ -5695,6 +5696,7 @@ void Game::playerAnswerModalWindow(uint32_t playerId, uint32_t modalWindowId, ui
 
 void Game::addPlayer(Player* player)
 {
+	TelemetryServer::incrementActivePlayers();
 	const std::string& lowercase_name = boost::algorithm::to_lower_copy(player->getName());
 	mappedPlayerNames[lowercase_name] = player;
 	mappedPlayerGuids[player->getGUID()] = player;
@@ -5704,6 +5706,7 @@ void Game::addPlayer(Player* player)
 
 void Game::removePlayer(Player* player)
 {
+	TelemetryServer::decrementActivePlayers();
 	const std::string& lowercase_name = boost::algorithm::to_lower_copy(player->getName());
 	mappedPlayerNames.erase(lowercase_name);
 	mappedPlayerGuids.erase(player->getGUID());

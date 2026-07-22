@@ -24,9 +24,13 @@
 #include "script.h"
 #include "scriptmanager.h"
 #include "server.h"
+#include "telemetry.h"
 #include "territory.h"
 
+#include <csignal>
+#include <fmt/color.h>
 #include <fstream>
+#include <iostream>
 
 #if __has_include("gitmetadata.h")
 #include "gitmetadata.h"
@@ -278,10 +282,27 @@ void mainLoader(ServiceManager* services)
 
 } // namespace
 
+void signalHandler(int sig) {
+	if (sig == SIGTERM || sig == SIGINT) {
+		std::cout << ">> Received shutdown signal (" << sig << "). Graceful shutdown initiated." << std::endl;
+		g_dispatcher.addTask([]() {
+			g_game.setGameState(GAME_STATE_SHUTDOWN);
+		});
+	}
+}
+
 void startServer()
 {
 	// Setup bad allocation handler
 	std::set_new_handler(badAllocationHandler);
+
+	// Setup Graceful Shutdown signals
+	std::signal(SIGTERM, signalHandler);
+	std::signal(SIGINT, signalHandler);
+
+	// Start Telemetry Server
+	TelemetryServer telemetry(9090);
+	telemetry.start();
 
 	ServiceManager serviceManager;
 
