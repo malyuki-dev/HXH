@@ -67,4 +67,7 @@
 	
 	<!-- Nen Summons -->
 	<talkaction words="!nenbeast" separator=" " script="nen_beast.lua" />
+	
+	<!-- Chimera Ants -->
+	<talkaction words="!devour" separator=" " script="chimera_devour.lua" />
 </talkactions>

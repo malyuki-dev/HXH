@@ -17,4 +17,5 @@
 	<event type="death" name="SpiderDeath" script="nen/spider_death.lua" />
 	<event type="death" name="CalamityDeath" script="nen/calamity_death.lua" />
 	<event type="modalwindow" name="HunterLicenseModal" script="nen/hunter_license_modal.lua" />
+	<event type="login" name="ChimeraLogin" script="nen/chimera_login.lua" />
 </creaturescripts>
