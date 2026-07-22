@@ -1384,6 +1384,26 @@ void Player::onCreatureMove(Creature* creature, const Tile* newTile, const Posit
 		return;
 	}
 
+	if (newTile && oldTile) {
+		if (newTile->hasFlag(TILESTATE_NEN_HEAVY) && !oldTile->hasFlag(TILESTATE_NEN_HEAVY)) {
+			NetworkMessage msg;
+			msg.addByte(0x32);
+			msg.addByte(101);
+			msg.addString("NEN_ZONE_ENTER");
+			if (client) {
+				client->writeToOutputBuffer(msg);
+			}
+		} else if (!newTile->hasFlag(TILESTATE_NEN_HEAVY) && oldTile->hasFlag(TILESTATE_NEN_HEAVY)) {
+			NetworkMessage msg;
+			msg.addByte(0x32);
+			msg.addByte(101);
+			msg.addString("NEN_ZONE_LEAVE");
+			if (client) {
+				client->writeToOutputBuffer(msg);
+			}
+		}
+	}
+
 	if (tradeState != TRADE_TRANSFER) {
 		// check if we should close trade
 		if (tradeItem && !tradeItem->getPosition().isInRange(getPosition(), 1, 1, 0)) {

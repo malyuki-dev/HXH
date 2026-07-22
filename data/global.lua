@@ -243,3 +243,7 @@ function checkDuplicateStorageKeys(varName)
 		return duplicates
 	end
 end
+
+-- Fase 9.2: GC Tuning (Performance optimization)
+collectgarbage("setpause", 110)
+collectgarbage("setstepmul", 400)

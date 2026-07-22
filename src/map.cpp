@@ -578,6 +578,12 @@ bool Map::checkSightLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uin
 	return checkSlightLine(x0, y0, x1, y1, z, pathfinding);
 }
 
+bool Map::checkLineCollision(const Position& start, const Position& end) const
+{
+	// Raycasting approach: if sight is not clear, there's a collision with a wall or obstacle.
+	return !isSightClear(start, end, true, true);
+}
+
 bool Map::isSightClear(const Position& fromPos, const Position& toPos, bool sameFloor /*= false*/,
                        bool pathfinding /*= false*/) const
 {

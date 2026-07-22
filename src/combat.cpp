@@ -793,6 +793,13 @@ void Combat::doTargetCombat(Creature* caster, Creature* target, CombatDamage& da
 
 	Player* casterPlayer = caster ? caster->getPlayer() : nullptr;
 
+	if (auto tile = target->getTile()) {
+		if (tile->hasFlag(TILESTATE_NEN_HEAVY)) {
+			damage.primary.value /= 2;
+			damage.secondary.value /= 2;
+		}
+	}
+
 	bool success = false;
 	if (damage.primary.type != COMBAT_MANADRAIN) {
 		if (g_game.combatBlockHit(damage, caster, target, params.blockedByShield, params.blockedByArmor,
@@ -1427,4 +1434,22 @@ void MagicField::onStepInField(Creature* creature)
 
 		creature->addCondition(conditionCopy);
 	}
+}
+
+void Combat::executeSkillshot(Creature* caster, const Position& targetPos, const AreaCombat* area, const CombatParams& params)
+{
+	if (!caster) {
+		return;
+	}
+
+	if (g_game.map.checkLineCollision(caster->getPosition(), targetPos)) {
+		if (Player* player = caster->getPlayer()) {
+			player->sendCancelMessage(RETURNVALUE_NOTENOUGHROOM);
+			g_game.addMagicEffect(caster->getPosition(), CONST_ME_POFF);
+		}
+		return;
+	}
+
+	CombatDamage damage;
+	doAreaCombat(caster, targetPos, area, damage, params);
 }

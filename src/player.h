@@ -437,6 +437,7 @@ public:
 	void setSecureMode(bool mode) { secureMode = mode; }
 
 	// combat functions
+	bool checkActionCooldown(uint32_t actionId, uint32_t ms);
 	void setAttackedCreature(Creature* creature) override;
 	void removeAttackedCreature() override;
 	bool isImmune(CombatType_t type) const override;
@@ -1163,6 +1164,7 @@ public:
 	void setClientLowLevelBonusDisplay(uint16_t value) { clientLowLevelBonusDisplay = value; }
 
 private:
+	std::unordered_map<uint32_t, int64_t> cooldowns;
 	std::forward_list<Condition*> getMuteConditions() const;
 
 	void checkTradeState(const Item* item);

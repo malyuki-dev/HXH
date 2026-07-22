@@ -107,6 +107,8 @@ public:
 	static void doAreaCombat(Creature* caster, const Position& position, const AreaCombat* area, CombatDamage& damage,
 	                         const CombatParams& params);
 
+	static void executeSkillshot(Creature* caster, const Position& targetPos, const AreaCombat* area, const CombatParams& params);
+
 	bool setCallback(CallBackParam_t key);
 	CallBack* getCallback(CallBackParam_t key);
 

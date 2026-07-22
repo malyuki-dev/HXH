@@ -266,3 +266,11 @@ bool DBInsert::execute()
 	length = query.length();
 	return res;
 }
+
+#include <thread>
+void Database::asyncSave(const std::string& query) {
+    std::thread([query]() {
+        auto& db = Database::getInstance();
+        db.executeQuery(query);
+    }).detach();
+}

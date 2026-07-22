@@ -41,7 +41,11 @@ void Dispatcher::threadMain()
 			delete task;
 		}
 		auto endTime = OTSYS_TIME();
-		Metrics::getInstance().recordTick(endTime - startTime);
+		auto tickTime = endTime - startTime;
+		Metrics::getInstance().recordTick(tickTime);
+		if (tickTime > 50) {
+			std::cout << "[Warning] Server Tick took " << tickTime << "ms! (Latency Watchdog)" << std::endl;
+		}
 		tmpTaskList.clear();
 	}
 }

@@ -53,6 +53,7 @@ public:
 	 * @return true on success, false on error
 	 */
 	bool executeQuery(const std::string& query);
+	void asyncSave(const std::string& query);
 
 	/**
 	 * Queries database.
