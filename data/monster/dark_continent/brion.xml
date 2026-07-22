@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster name="Brion" nameDescription="the botanical weapon" race="blood" experience="500000" speed="500">
+	<health now="1000000" max="1000000" />
+	<look type="10" head="0" body="0" legs="0" feet="0" corpse="2844" />
+	<targetchange interval="5000" chance="8" />
+	<flags>
+		<flag summonable="0" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="0" />
+		<flag convinceable="0" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="1" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	</flags>
+	<attacks>
+		<attack name="melee" interval="2000" min="-1000" max="-3000" />
+		<attack name="earth" interval="3000" chance="20" radius="5" target="0" min="-2000" max="-4000">
+			<attribute key="areaEffect" value="plantattack" />
+		</attack>
+	</attacks>
+	<defenses armor="150" defense="150">
+		<defense name="healing" interval="4000" chance="15" min="5000" max="10000">
+			<attribute key="areaEffect" value="greenshimmer" />
+		</defense>
+	</defenses>
+	<elements>
+		<element earthPercent="100" />
+		<element firePercent="-50" />
+	</elements>
+	<immunities>
+		<immunity paralyze="1" />
+		<immunity invisible="1" />
+	</immunities>
+	<!-- O tracker de dano é acionado via script de morte da calamidade -->
+	<script>
+		<event name="CalamityDeath" />
+	</script>
+</monster>

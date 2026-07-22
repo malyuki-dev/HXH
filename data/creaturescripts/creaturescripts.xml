@@ -15,4 +15,5 @@
 	<event type="modalwindow" name="AccompanyModal" script="nen/accompany_modal.lua" />
 	<event type="preparedeath" name="ArenaPrepareDeath" script="nen/arena_death.lua" />
 	<event type="death" name="SpiderDeath" script="nen/spider_death.lua" />
+	<event type="death" name="CalamityDeath" script="nen/calamity_death.lua" />
 </creaturescripts>

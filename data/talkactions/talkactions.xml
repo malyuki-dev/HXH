@@ -61,4 +61,7 @@
 	<!-- Phantom Troupe -->
 	<talkaction words="!spider" separator=" " script="spider_commands.lua" />
 	<talkaction words="!spiders" separator=" " script="spider_commands.lua" />
+	
+	<!-- Dark Continent (GM) -->
+	<talkaction words="/calamity" separator=" " script="calamity_spawn.lua" />
 </talkactions>
