@@ -142,4 +142,7 @@
 	<!-- Chrollo's Bandit's Secret -->
 	<talkaction words="!steal" separator=" " script="nen/bandits_secret.lua" />
 	<talkaction words="!stolen" separator=" " script="nen/stolen_ability.lua" />
+	
+	<!-- Killua's Godspeed -->
+	<talkaction words="!godspeed" separator=" " script="nen/godspeed.lua" />
 </talkactions>

@@ -40,6 +40,7 @@ function onLogin(player)
 	
 	-- Registra o rastreador de dano do Feitan (Pain Packer)
 	player:registerEvent("PainPackerTracker")
+	player:registerEvent("GodspeedStrike")
 	player:registerEvent("CrazySlotsKill")
 	player:registerEvent("BestiaryKills")
 	player:registerEvent("HunterElectionModal")
