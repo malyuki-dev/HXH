@@ -122,4 +122,7 @@
 	<!-- Phantom Troupe (Genei Ryodan) -->
 	<talkaction words="!spider" separator=" " script="nen/phantom_troupe_talkaction.lua" />
 	<talkaction words="!makespider" separator=" " script="nen/phantom_troupe_talkaction.lua" />
+	
+	<!-- Black Whale Ship -->
+	<talkaction words="!buyticket" separator=" " script="nen/buy_ticket.lua" />
 </talkactions>

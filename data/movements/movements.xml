@@ -1412,4 +1412,10 @@
 		<vocation name="Royal Paladin" showInDescription="0" />
 	</movevent>
 	<movevent event="DeEquip" itemid="39322" slot="shield" function="onDeEquipItem" />
+	<!-- Black Whale Ship Gates -->
+	<movevent event="StepIn" actionid="5001" script="nen/black_whale_gates.lua" />
+	<movevent event="StepIn" actionid="5002" script="nen/black_whale_gates.lua" />
+	<movevent event="StepIn" actionid="5003" script="nen/black_whale_gates.lua" />
+	<movevent event="StepIn" actionid="5004" script="nen/black_whale_gates.lua" />
+	<movevent event="StepIn" actionid="5005" script="nen/black_whale_gates.lua" />
 </movements>
