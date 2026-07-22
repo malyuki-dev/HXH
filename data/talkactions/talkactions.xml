@@ -102,4 +102,10 @@
 	
 	<!-- Dragon Dive (Zeno) -->
 	<talkaction words="!dragondive" separator=" " script="nen/dragon_dive.lua" />
+	
+	<!-- 100-Type Guanyin Bodhisattva (Netero) -->
+	<talkaction words="!bodhisattva" separator=" " script="nen/bodhisattva_stance.lua" />
+	<talkaction words="!firsthand" separator=" " script="nen/bodhisattva_hands.lua" />
+	<talkaction words="!thirdhand" separator=" " script="nen/bodhisattva_hands.lua" />
+	<talkaction words="!ninetyninthhand" separator=" " script="nen/bodhisattva_hands.lua" />
 </talkactions>
