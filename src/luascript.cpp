@@ -17,6 +17,8 @@
 #include "housetile.h"
 #include "inbox.h"
 #include "iologindata.h"
+#include "snapshot_buffer.h"
+#include "crafting.h"
 #include "iomapserialize.h"
 #include "iomarket.h"
 #include "luavariant.h"
@@ -2667,6 +2669,7 @@ void LuaScriptInterface::registerFunctions()
 	registerMethod(L, "Creature", "setSkillLoss", LuaScriptInterface::luaCreatureSetSkillLoss);
 
 	registerMethod(L, "Creature", "getPosition", LuaScriptInterface::luaCreatureGetPosition);
+	registerMethod(L, "Creature", "getPastPosition", LuaScriptInterface::luaCreatureGetPastPosition);
 	registerMethod(L, "Creature", "getTile", LuaScriptInterface::luaCreatureGetTile);
 	registerMethod(L, "Creature", "getDirection", LuaScriptInterface::luaCreatureGetDirection);
 	registerMethod(L, "Creature", "setDirection", LuaScriptInterface::luaCreatureSetDirection);
@@ -2765,6 +2768,7 @@ void LuaScriptInterface::registerFunctions()
 	registerMethod(L, "Player", "getEffectiveSkillLevel", LuaScriptInterface::luaPlayerGetEffectiveSkillLevel);
 	registerMethod(L, "Player", "getSkillPercent", LuaScriptInterface::luaPlayerGetSkillPercent);
 	registerMethod(L, "Player", "getSkillTries", LuaScriptInterface::luaPlayerGetSkillTries);
+	registerMethod(L, "Player", "craftItem", LuaScriptInterface::luaPlayerCraftItem);
 	registerMethod(L, "Player", "addSkillTries", LuaScriptInterface::luaPlayerAddSkillTries);
 	registerMethod(L, "Player", "removeSkillTries", LuaScriptInterface::luaPlayerRemoveSkillTries);
 	registerMethod(L, "Player", "getSpecialSkill", LuaScriptInterface::luaPlayerGetSpecialSkill);
@@ -8300,6 +8304,24 @@ int LuaScriptInterface::luaCreatureGetPosition(lua_State* L)
 	return 1;
 }
 
+int LuaScriptInterface::luaCreatureGetPastPosition(lua_State* L)
+{
+	// creature:getPastPosition(timestampMs)
+	const Creature* creature = tfs::lua::getUserdata<const Creature>(L, 1);
+	int64_t timestampMs = tfs::lua::getNumber<int64_t>(L, 2);
+	if (creature) {
+		Position pos;
+		if (SnapshotBuffer::getInstance().getPastPosition(creature->getID(), timestampMs, pos)) {
+			tfs::lua::pushPosition(L, pos);
+		} else {
+			tfs::lua::pushPosition(L, creature->getPosition());
+		}
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
 int LuaScriptInterface::luaCreatureGetTile(lua_State* L)
 {
 	// creature:getTile()
@@ -9504,6 +9526,19 @@ int LuaScriptInterface::luaPlayerGetSkillTries(lua_State* L)
 	Player* player = tfs::lua::getUserdata<Player>(L, 1);
 	if (player && skillType <= SKILL_LAST) {
 		lua_pushnumber(L, player->skills[skillType].tries);
+	} else {
+		lua_pushnil(L);
+	}
+	return 1;
+}
+
+int LuaScriptInterface::luaPlayerCraftItem(lua_State* L)
+{
+	// player:craftItem(blueprintId)
+	Player* player = tfs::lua::getUserdata<Player>(L, 1);
+	if (player) {
+		uint32_t blueprintId = tfs::lua::getNumber<uint32_t>(L, 2);
+		tfs::lua::pushBoolean(L, BlueprintRegistry::getInstance().craftItem(player, blueprintId));
 	} else {
 		lua_pushnil(L);
 	}

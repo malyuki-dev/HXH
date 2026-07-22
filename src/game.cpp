@@ -23,6 +23,7 @@
 #include "monster.h"
 #include "movement.h"
 #include "telemetry.h"
+#include "snapshot_buffer.h"
 #include "npc.h"
 #include "outfit.h"
 #include "party.h"
@@ -541,6 +542,7 @@ bool Game::placeCreature(Creature* creature, const Position& pos, bool extendedP
 
 bool Game::removeCreature(Creature* creature, bool isLogout /* = true*/)
 {
+	SnapshotBuffer::getInstance().removeCreature(creature->getID());
 	if (creature->isRemoved()) {
 		return false;
 	}
@@ -836,6 +838,7 @@ ReturnValue Game::internalMoveCreature(Creature& creature, Tile& toTile, uint32_
 	}
 
 	map.moveCreature(creature, toTile);
+	SnapshotBuffer::getInstance().recordPosition(creature.getID(), toTile.getPosition());
 	if (creature.getParent() != &toTile) {
 		return RETURNVALUE_NOERROR;
 	}

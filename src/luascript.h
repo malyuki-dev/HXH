@@ -562,6 +562,7 @@ private:
 	static int luaCreatureSetSkillLoss(lua_State* L);
 
 	static int luaCreatureGetPosition(lua_State* L);
+	static int luaCreatureGetPastPosition(lua_State* L);
 	static int luaCreatureGetTile(lua_State* L);
 	static int luaCreatureGetDirection(lua_State* L);
 	static int luaCreatureSetDirection(lua_State* L);
@@ -659,6 +660,7 @@ private:
 	static int luaPlayerGetEffectiveSkillLevel(lua_State* L);
 	static int luaPlayerGetSkillPercent(lua_State* L);
 	static int luaPlayerGetSkillTries(lua_State* L);
+	static int luaPlayerCraftItem(lua_State* L);
 	static int luaPlayerAddSkillTries(lua_State* L);
 	static int luaPlayerRemoveSkillTries(lua_State* L);
 	static int luaPlayerGetSpecialSkill(lua_State* L);

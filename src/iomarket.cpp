@@ -28,8 +28,8 @@ MarketOfferList getActiveOffers(MarketAction_t action, uint16_t itemId)
 	MarketOfferList offerList;
 
 	DBResult_ptr result = Database::getInstance().storeQuery(fmt::format(
-	    "SELECT `id`, `amount`, `price`, `created`, `anonymous`, (SELECT `name` FROM `players` WHERE `id` = `player_id`) AS `player_name` FROM `market_offers` WHERE `sale` = {:d} AND `itemtype` = {:d}",
-	    std::to_underlying(action), itemId));
+	    "SELECT `id`, `amount`, `price`, `created`, `anonymous`, (SELECT `name` FROM `players` WHERE `id` = `player_id`) AS `player_name` FROM `market_offers` WHERE `sale` = {:d} AND `itemtype` = {:d} AND `created` <= {:d}",
+	    std::to_underlying(action), itemId, time(nullptr)));
 	if (!result) {
 		return offerList;
 	}
@@ -246,9 +246,12 @@ MarketOfferEx getOfferByCounter(uint32_t timestamp, uint16_t counter)
 void createOffer(uint32_t playerId, MarketAction_t action, uint32_t itemId, uint16_t amount, uint64_t price,
                  bool anonymous)
 {
+	// Jitter aleatorio de 30 a 60 segundos (Anti-Snipping)
+	uint32_t availabilityTime = time(nullptr) + (rand() % 30 + 30);
+	
 	Database::getInstance().executeQuery(fmt::format(
 	    "INSERT INTO `market_offers` (`player_id`, `sale`, `itemtype`, `amount`, `price`, `created`, `anonymous`) VALUES ({:d}, {:d}, {:d}, {:d}, {:d}, {:d}, {:d})",
-	    playerId, std::to_underlying(action), itemId, amount, price, time(nullptr), anonymous));
+	    playerId, std::to_underlying(action), itemId, amount, price, availabilityTime, anonymous));
 }
 
 void acceptOffer(uint32_t offerId, uint16_t amount)

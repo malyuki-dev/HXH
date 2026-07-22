@@ -25,6 +25,7 @@
 #include "scriptmanager.h"
 #include "server.h"
 #include "telemetry.h"
+#include "crafting.h"
 #include "territory.h"
 
 #include <csignal>
@@ -303,6 +304,8 @@ void startServer()
 	// Start Telemetry Server
 	TelemetryServer telemetry(9090);
 	telemetry.start();
+
+	BlueprintRegistry::getInstance().loadBlueprints();
 
 	ServiceManager serviceManager;
 
