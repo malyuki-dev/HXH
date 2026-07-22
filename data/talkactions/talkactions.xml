@@ -92,4 +92,8 @@
 	
 	<!-- Pain Packer (Feitan) -->
 	<talkaction words="!painpacker" separator=" " script="nen/pain_packer.lua" />
+	
+	<!-- Hunter Exam & License -->
+	<talkaction words="!takeexam" separator=" " script="nen/hunter_license.lua" />
+	<talkaction words="!license" separator=" " script="nen/hunter_license.lua" />
 </talkactions>
