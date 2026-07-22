@@ -207,4 +207,8 @@
 	<action actionid="5005" script="zoldyck_gates.lua" />
 	<action actionid="5006" script="zoldyck_gates.lua" />
 	<action actionid="5007" script="zoldyck_gates.lua" />
+	
+	<!-- Greed Island Cards -->
+	<action itemid="2019" script="nen/greed_island_cards.lua" />
+	<action itemid="2020" script="nen/greed_island_cards.lua" />
 </actions>
