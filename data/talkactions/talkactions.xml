@@ -48,6 +48,7 @@
 	<talkaction words="!z" separator=" " script="magic_effect.lua" />
 	<talkaction words="!x" separator=" " script="animation_effect.lua" />
 	
-	<!-- Economy -->
+	<!-- Economy & Blacklist -->
 	<talkaction words="!sellitem" separator=" " script="sell_item.lua" />
+	<talkaction words="!bounty" separator=" " script="set_bounty.lua" />
 </talkactions>

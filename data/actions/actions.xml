@@ -186,4 +186,7 @@
 	
 	<!-- Auction House -->
 	<action itemid="2016" script="nen/auction_board.lua" />
+	
+	<!-- Bounty Board -->
+	<action itemid="2017" script="nen/bounty_board.lua" />
 </actions>
