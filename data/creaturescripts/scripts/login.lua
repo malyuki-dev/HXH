@@ -35,6 +35,7 @@ function onLogin(player)
 	-- Events
 	player:registerEvent("PlayerDeath")
 	player:registerEvent("DropLoot")
+	player:registerEvent("PainPackerTracker")
 	player:registerEvent("BestiaryKills")
 	player:registerEvent("HunterElectionModal")
 	player:registerEvent("AuctionBoardModal")

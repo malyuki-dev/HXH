@@ -89,4 +89,7 @@
 	
 	<!-- Bungee Gum (Hisoka) -->
 	<talkaction words="!bungeegum" separator=" " script="nen/bungee_gum.lua" />
+	
+	<!-- Pain Packer (Feitan) -->
+	<talkaction words="!painpacker" separator=" " script="nen/pain_packer.lua" />
 </talkactions>
