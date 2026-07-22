@@ -180,4 +180,7 @@
 	
 	<!-- Nen Divination -->
 	<action itemid="2013" script="nen/water_divination.lua" />
+	
+	<!-- Hunter Election -->
+	<action itemid="2015" script="nen/hunter_election.lua" />
 </actions>
