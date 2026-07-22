@@ -1167,6 +1167,8 @@
 	<monster name="Zushuka" file="monsters/zushuka.xml" />
 	<!-- Beasts (Custom) -->
 	<monster name="Giant Forest Boar" file="beasts/giant_boar.xml" />
+	<!-- Nen Summons -->
+	<monster name="Nen Beast" file="nen_beast.xml" />
 	<!-- Dark Continent -->
 	<monster name="Brion" file="dark_continent/brion.xml" />
 </monsters>

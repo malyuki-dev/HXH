@@ -64,4 +64,7 @@
 	
 	<!-- Dark Continent (GM) -->
 	<talkaction words="/calamity" separator=" " script="calamity_spawn.lua" />
+	
+	<!-- Nen Summons -->
+	<talkaction words="!nenbeast" separator=" " script="nen_beast.lua" />
 </talkactions>

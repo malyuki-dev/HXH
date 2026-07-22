@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster name="Nen Beast" nameDescription="a conjured nen beast" race="blood" experience="0" speed="300">
+	<health now="1000" max="1000" /> <!-- Vai ser reescrito dinamicamente pelo script Lua -->
+	<look type="68" head="0" body="0" legs="0" feet="0" corpse="0" /> <!-- Aura Elemental -->
+	<targetchange interval="5000" chance="8" />
+	<flags>
+		<flag summonable="1" />
+		<flag attackable="1" />
+		<flag hostile="1" />
+		<flag illusionable="0" />
+		<flag convinceable="1" />
+		<flag pushable="0" />
+		<flag canpushitems="1" />
+		<flag canpushcreatures="1" />
+		<flag targetdistance="1" />
+		<flag staticattack="90" />
+		<flag runonhealth="0" />
+	</flags>
+	<attacks>
+		<!-- O melee base da fera -->
+		<attack name="melee" interval="2000" min="-10" max="-50" />
+	</attacks>
+	<defenses armor="20" defense="20" />
+	<immunities>
+		<immunity paralyze="1" />
+		<immunity invisible="1" />
+	</immunities>
+</monster>
