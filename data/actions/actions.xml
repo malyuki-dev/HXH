@@ -183,4 +183,7 @@
 	
 	<!-- Hunter Election -->
 	<action itemid="2015" script="nen/hunter_election.lua" />
+	
+	<!-- Auction House -->
+	<action itemid="2016" script="nen/auction_board.lua" />
 </actions>

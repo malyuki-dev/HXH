@@ -37,5 +37,6 @@ function onLogin(player)
 	player:registerEvent("DropLoot")
 	player:registerEvent("BestiaryKills")
 	player:registerEvent("HunterElectionModal")
+	player:registerEvent("AuctionBoardModal")
 	return true
 end

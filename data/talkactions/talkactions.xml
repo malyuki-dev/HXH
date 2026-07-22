@@ -47,4 +47,7 @@
 	<!-- test talkactions -->
 	<talkaction words="!z" separator=" " script="magic_effect.lua" />
 	<talkaction words="!x" separator=" " script="animation_effect.lua" />
+	
+	<!-- Economy -->
+	<talkaction words="!sellitem" separator=" " script="sell_item.lua" />
 </talkactions>
