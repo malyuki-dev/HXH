@@ -83,4 +83,7 @@
 	
 	<!-- Chain Jail (Kurapika's Vow) -->
 	<talkaction words="!chainjail" separator=" " script="nen/chain_jail.lua" />
+	
+	<!-- Godspeed (Kanmuru) -->
+	<talkaction words="!godspeed" separator=" " script="nen/godspeed.lua" />
 </talkactions>
