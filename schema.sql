@@ -428,3 +428,25 @@ CREATE TABLE `auctions` (
   CONSTRAINT `auctions_ibfk_1` FOREIGN KEY (`player_id`) REFERENCES `players` (`id`) ON DELETE CASCADE,
   CONSTRAINT `auctions_ibfk_2` FOREIGN KEY (`top_bidder`) REFERENCES `players` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `territories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `owner_guild_id` int(11) DEFAULT NULL,
+  `yield_gold` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `owner_guild_id` (`owner_guild_id`),
+  CONSTRAINT `territories_ibfk_1` FOREIGN KEY (`owner_guild_id`) REFERENCES `guilds` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `bounties` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `target_id` int(11) NOT NULL,
+  `poster_id` int(11) NOT NULL,
+  `reward` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `target_id` (`target_id`),
+  KEY `poster_id` (`poster_id`),
+  CONSTRAINT `bounties_ibfk_1` FOREIGN KEY (`target_id`) REFERENCES `players` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `bounties_ibfk_2` FOREIGN KEY (`poster_id`) REFERENCES `players` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

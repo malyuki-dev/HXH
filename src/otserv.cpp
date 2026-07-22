@@ -8,6 +8,7 @@
 #include "actions.h"
 #include "auctionmanager.h"
 #include "blueprintmanager.h"
+#include "bounty.h"
 #include "configmanager.h"
 #include "databasemanager.h"
 #include "databasetasks.h"
@@ -23,6 +24,7 @@
 #include "script.h"
 #include "scriptmanager.h"
 #include "server.h"
+#include "territory.h"
 
 #include <fstream>
 
@@ -173,6 +175,8 @@ void mainLoader(ServiceManager* services)
 	}
 
 	BlueprintManager::getInstance().loadFromXml("data/XML/blueprints.xml");
+	TerritoryManager::getInstance().loadTerritories();
+	BountyManager::getInstance().loadBounties();
 
 	std::cout << ">> Loading monsters" << std::endl;
 	if (!g_monsters.loadFromXml()) {
@@ -286,6 +290,7 @@ void startServer()
 
 	LagCompensation::getInstance().startLoop();
 	AuctionManager::getInstance().startLoop();
+	TerritoryManager::getInstance().startLoop();
 
 	g_dispatcher.addTask([services = &serviceManager]() { mainLoader(services); });
 

@@ -6,6 +6,7 @@ set(tfs_SRC
 	${CMAKE_CURRENT_LIST_DIR}/base64.cpp
 	${CMAKE_CURRENT_LIST_DIR}/baseevents.cpp
 	${CMAKE_CURRENT_LIST_DIR}/blueprintmanager.cpp
+	${CMAKE_CURRENT_LIST_DIR}/bounty.cpp
 	${CMAKE_CURRENT_LIST_DIR}/bed.cpp
 	${CMAKE_CURRENT_LIST_DIR}/chat.cpp
 	${CMAKE_CURRENT_LIST_DIR}/combat.cpp
@@ -28,6 +29,7 @@ set(tfs_SRC
 	${CMAKE_CURRENT_LIST_DIR}/guild.cpp
 	${CMAKE_CURRENT_LIST_DIR}/house.cpp
 	${CMAKE_CURRENT_LIST_DIR}/housetile.cpp
+	${CMAKE_CURRENT_LIST_DIR}/hunterexam.cpp
 	${CMAKE_CURRENT_LIST_DIR}/inbox.cpp
 	${CMAKE_CURRENT_LIST_DIR}/iologindata.cpp
 	${CMAKE_CURRENT_LIST_DIR}/iomap.cpp
@@ -70,6 +72,7 @@ set(tfs_SRC
 	${CMAKE_CURRENT_LIST_DIR}/talkaction.cpp
 	${CMAKE_CURRENT_LIST_DIR}/tasks.cpp
 	${CMAKE_CURRENT_LIST_DIR}/teleport.cpp
+	${CMAKE_CURRENT_LIST_DIR}/territory.cpp
 	${CMAKE_CURRENT_LIST_DIR}/thing.cpp
 	${CMAKE_CURRENT_LIST_DIR}/tile.cpp
 	${CMAKE_CURRENT_LIST_DIR}/tools.cpp
@@ -88,6 +91,7 @@ set(tfs_HDR
 	${CMAKE_CURRENT_LIST_DIR}/base64.h
 	${CMAKE_CURRENT_LIST_DIR}/baseevents.h
 	${CMAKE_CURRENT_LIST_DIR}/blueprintmanager.h
+	${CMAKE_CURRENT_LIST_DIR}/bounty.h
 	${CMAKE_CURRENT_LIST_DIR}/bed.h
 	${CMAKE_CURRENT_LIST_DIR}/chat.h
 	${CMAKE_CURRENT_LIST_DIR}/combat.h
@@ -113,6 +117,7 @@ set(tfs_HDR
 	${CMAKE_CURRENT_LIST_DIR}/guild.h
 	${CMAKE_CURRENT_LIST_DIR}/house.h
 	${CMAKE_CURRENT_LIST_DIR}/housetile.h
+	${CMAKE_CURRENT_LIST_DIR}/hunterexam.h
 	${CMAKE_CURRENT_LIST_DIR}/inbox.h
 	${CMAKE_CURRENT_LIST_DIR}/iologindata.h
 	${CMAKE_CURRENT_LIST_DIR}/iomap.h
@@ -160,6 +165,7 @@ set(tfs_HDR
 	${CMAKE_CURRENT_LIST_DIR}/talkaction.h
 	${CMAKE_CURRENT_LIST_DIR}/tasks.h
 	${CMAKE_CURRENT_LIST_DIR}/teleport.h
+	${CMAKE_CURRENT_LIST_DIR}/territory.h
 	${CMAKE_CURRENT_LIST_DIR}/thing.h
 	${CMAKE_CURRENT_LIST_DIR}/thread_holder_base.h
 	${CMAKE_CURRENT_LIST_DIR}/tile.h
