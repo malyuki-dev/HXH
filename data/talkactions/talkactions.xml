@@ -134,4 +134,8 @@
 	
 	<!-- Kite's Crazy Slots -->
 	<talkaction words="!crazyslots" separator=" " script="nen/crazy_slots.lua" />
+	
+	<!-- Hisoka's Bungee Gum -->
+	<talkaction words="!bungeegum" separator=" " script="nen/bungee_gum.lua" />
+	<talkaction words="!bungeepull" separator=" " script="nen/bungee_pull.lua" />
 </talkactions>
