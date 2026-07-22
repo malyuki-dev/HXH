@@ -32,6 +32,9 @@
 #include <fmt/color.h>
 #include <fstream>
 #include <iostream>
+#ifndef _WIN32
+#include <unistd.h>
+#endif
 
 #if __has_include("gitmetadata.h")
 #include "gitmetadata.h"
@@ -290,6 +293,26 @@ void signalHandler(int sig) {
 			g_game.setGameState(GAME_STATE_SHUTDOWN);
 		});
 	}
+#ifndef _WIN32
+	else if (sig == SIGUSR1) {
+		std::cout << ">> Received SIGUSR1. Hot-Reload initiated..." << std::endl;
+		g_dispatcher.addTask([]() {
+			// Save the state
+			g_game.saveGameState();
+			std::cout << ">> State saved. Executing new binary..." << std::endl;
+			
+			// Transfer state to shared memory (conceptual)
+			// StateTransfer::serializeToSharedMemory();
+			
+			// Execv replaces the current process image with a new process image
+			char* args[] = { (char*)"./tfs", NULL };
+			execv("./tfs", args);
+			
+			// If execv fails
+			std::cerr << ">> Hot-Reload failed. Execv error." << std::endl;
+		});
+	}
+#endif
 }
 
 void startServer()
@@ -300,6 +323,9 @@ void startServer()
 	// Setup Graceful Shutdown signals
 	std::signal(SIGTERM, signalHandler);
 	std::signal(SIGINT, signalHandler);
+#ifndef _WIN32
+	std::signal(SIGUSR1, signalHandler);
+#endif
 
 	// Start Telemetry Server
 	TelemetryServer telemetry(9090);

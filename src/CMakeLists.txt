@@ -14,6 +14,7 @@ set(tfs_SRC
 	${CMAKE_CURRENT_LIST_DIR}/snapshot_buffer.cpp
 	${CMAKE_CURRENT_LIST_DIR}/crafting.cpp
 	${CMAKE_CURRENT_LIST_DIR}/exam_manager.cpp
+	${CMAKE_CURRENT_LIST_DIR}/stress_test.cpp
 	${CMAKE_CURRENT_LIST_DIR}/condition.cpp
 	${CMAKE_CURRENT_LIST_DIR}/configmanager.cpp
 	${CMAKE_CURRENT_LIST_DIR}/connection.cpp

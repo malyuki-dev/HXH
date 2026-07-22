@@ -1,4 +1,5 @@
 #include "telemetry.h"
+#include "metrics.h"
 #include <iostream>
 
 ServerMetrics TelemetryServer::metrics;
@@ -58,7 +59,8 @@ void TelemetryServer::handleRequest(std::shared_ptr<boost::asio::ip::tcp::socket
                     "aldebaran_skill_invocations_total " + std::to_string(metrics.totalSkillInvocations.load()) + "\n"
                     "# HELP aldebaran_active_duels Number of active duels\n"
                     "# TYPE aldebaran_active_duels gauge\n"
-                    "aldebaran_active_duels " + std::to_string(metrics.activeDuels.load()) + "\n";
+                    "aldebaran_active_duels " + std::to_string(metrics.activeDuels.load()) + "\n" +
+                    Metrics::getInstance().getPrometheusMetrics();
 
                 std::string response = 
                     "HTTP/1.1 200 OK\r\n"
