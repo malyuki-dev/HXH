@@ -99,4 +99,7 @@
 	
 	<!-- Nen Strike (O(1) Damage Demo) -->
 	<talkaction words="!nenstrike" separator=" " script="nen/nen_strike.lua" />
+	
+	<!-- Dragon Dive (Zeno) -->
+	<talkaction words="!dragondive" separator=" " script="nen/dragon_dive.lua" />
 </talkactions>
