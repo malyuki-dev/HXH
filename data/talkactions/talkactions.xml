@@ -128,4 +128,7 @@
 	
 	<!-- Kakin Succession War (Nen Beasts) -->
 	<talkaction words="!nenbeast" separator=" " script="nen/nen_beast.lua" />
+	
+	<!-- Kurapika's Emperor Time -->
+	<talkaction words="!emperortime" separator=" " script="nen/emperor_time.lua" />
 </talkactions>
