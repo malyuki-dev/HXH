@@ -108,4 +108,7 @@
 	<talkaction words="!firsthand" separator=" " script="nen/bodhisattva_hands.lua" />
 	<talkaction words="!thirdhand" separator=" " script="nen/bodhisattva_hands.lua" />
 	<talkaction words="!ninetyninthhand" separator=" " script="nen/bodhisattva_hands.lua" />
+	
+	<!-- En (Nen Radar) -->
+	<talkaction words="!en" separator=" " script="nen/en_radar.lua" />
 </talkactions>
